@@ -6,3 +6,16 @@
 AngularJS often asserts that certain values will be present and truthy using a
 helper function. If the assertion fails, this error is thrown. To fix this problem,
 make sure that the value the assertion expects is defined and truthy.
+
+
+These type of error can occur when the module on which the controller is defined is again defined with an array argument passed along with the module 
+module name in which the case is that you should define a module with array argument passed to it only once.For example this can cause an error,
+
+angular.module("moduleName",[]);
+angular.module("moduleName").controller("controllerNameOne",[function(){   }]);
+
+Now if you are defining another controller to the same module like this,
+
+angular.module("moduleName",[]).controller("controllerNameTwo",[function(){   }]);
+
+So here you should just pass the module name only, no need of arguments.
